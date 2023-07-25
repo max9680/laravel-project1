@@ -18,8 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/my_page', [MyPlaceController::class, 'index']);
-
-Route::get('my_second_page', [MyPlaceController::class, 'second']);
+Route::get('/posts', [MyPlaceController::class, 'index']);
 
 Route::get('my_third_page', [MyPlaceController::class, 'third']);
