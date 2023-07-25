@@ -52,6 +52,6 @@ class PostController extends Controller
                 'likes' => 50,
                 'is_published' => 1,
             ],
-        ]
+        ];
     }
 }
