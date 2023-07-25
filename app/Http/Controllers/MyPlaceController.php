@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class MyPlaceController extends Controller
 {
     public function index() {
-        return 'this is my page';
+        $post = Post::where('is_published', 0)->first();
+
+//        foreach ($posts as $post) {
+//            dump($post->title);
+//        }
+
+        dd($post);
     }
 
     public function second() {
