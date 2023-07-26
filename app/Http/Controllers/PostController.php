@@ -11,8 +11,12 @@ class PostController extends Controller
 {
     public function index() {
 
-        $post = Post::find(1);
-        dd($post->likes);
+        $post = Post::where('is_published', 1)->first();
+
+//        foreach ($posts as $post) {
+//            dump($post->title);
+//        }
+        dd($post->title);
     }
 
     public function second() {
@@ -53,5 +57,19 @@ class PostController extends Controller
                 'is_published' => 1,
             ],
         ];
+
+//        Post::create([
+//            'title' => 'title of post from phpstorm',
+//            'content' => 'some content',
+//            'image' => 'imaginy.jpg',
+//            'likes' => 20,
+//            'is_published' => 1,
+//        ]);
+
+        foreach ($postsArr as $item) {
+            Post::create($item);
+//            dd($item);
+        }
+        dd('created');
     }
 }
