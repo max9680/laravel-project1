@@ -11,12 +11,12 @@ class PostController extends Controller
 {
     public function index() {
 
-        $post = Post::where('is_published', 1)->first();
+        $posts = Post::all();
+//        dump($posts);
+//
+//        dd('end');
 
-//        foreach ($posts as $post) {
-//            dump($post->title);
-//        }
-        dd($post->title);
+        return view('posts', compact('posts'));
     }
 
     public function second() {
