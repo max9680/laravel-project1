@@ -12,65 +12,25 @@ class PostController extends Controller
     public function index() {
 
         $posts = Post::all();
-//        dump($posts);
-//
-//        dd('end');
 
-        return view('posts', compact('posts'));
-    }
-
-    public function second() {
-        $dream = Dream::find(1);
-
-        dump($dream->title);
-        dump($dream->description);
-        dd($dream->created_at);
-    }
-
-    public function third() {
-        return 'this is my third page';
-
-        $post = Post::where('is_published', 0)->first();
-
-//        foreach ($posts as $post) {
-//            dump($post->title);
-//        }
-
-        dd($post);
+        return view('post.index', compact('posts'));
     }
 
     public function create() {
 
-        $postsArr = [
-            [
-                'title' => 'title of post from phpstorm',
-                'content' => 'some content',
-                'image' => 'imaginy.jpg',
-                'likes' => 20,
-                'is_published' => 1,
-            ],
-            [
-                'title' => 'another title of post from phpstorm',
-                'content' => 'another some content',
-                'image' => 'another_imaginy.jpg',
-                'likes' => 50,
-                'is_published' => 1,
-            ],
-        ];
+        return view('post.create');
+    }
 
-//        Post::create([
-//            'title' => 'title of post from phpstorm',
-//            'content' => 'some content',
-//            'image' => 'imaginy.jpg',
-//            'likes' => 20,
-//            'is_published' => 1,
-//        ]);
+    public function store() {
 
-        foreach ($postsArr as $item) {
-            Post::create($item);
-//            dd($item);
-        }
-        dd('created');
+        $data = request()->validate([
+           'title' => 'string',
+           'content' => 'string',
+           'image' => 'string',
+        ]);
+        Post::create($data);
+
+        return redirect()->route('posts.index');
     }
 
     public function update() {
