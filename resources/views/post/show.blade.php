@@ -5,6 +5,9 @@
         <div>{{ $post->content }}</div>
     </div>
     <div class="container pt-5 mx-auto px-4">
+        <a href="{{ route('posts.edit', $post->id) }}">Edit</a>
+    </div>
+    <div class="container pt-5 mx-auto px-4">
         <a href="{{ route('posts.index') }}">Back</a>
     </div>
 @endsection
