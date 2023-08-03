@@ -56,14 +56,11 @@ class PostController extends Controller
         return redirect()->route('posts.show', $post->id);
     }
 
-    public function delete() {
-        $post = Post::withTrashed()->find(4);
-        $post->restore();
-
-        dd($post);
+    public function destroy(Post $post) {
 
         $post->delete();
-        dd('deleted');
+
+        return redirect()->route('posts.index');
     }
 
     public function firstOrCreate() {
