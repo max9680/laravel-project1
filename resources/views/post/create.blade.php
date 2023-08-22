@@ -42,6 +42,16 @@
                 </div>
 
                 <div class="mt-2">
+                    <label data-te-select-label-ref for="tags" data-te-select-label-ref>Tags</label>
+                    <select data-te-select-init multiple class="rounded border-2 border-gray-300 w-full" id="tags" name="tags[]">
+                        @foreach($tags as $tag)
+                            <option value="{{ $tag->id }}">{{ $tag->title }}</option>
+                        @endforeach
+                    </select>
+
+                </div>
+
+                <div class="mt-2">
                     <input class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit"
                            value="Create">
                 </div>
