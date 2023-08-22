@@ -13,20 +13,16 @@ class PostController extends Controller
 {
     public function index()
     {
+        $posts = Post::all();
 
-        $category = Category::find(1);
-        $post = Post::find(1);
-        $tag = Tag::find(1);
-
-        dd($tag->posts);
-
-//        return view('post.index', compact('posts'));
+        return view('post.index', compact('posts'));
     }
 
     public function create()
     {
+        $categories = Category::all();
 
-        return view('post.create');
+        return view('post.create', compact('categories'));
     }
 
     public function store()
@@ -36,7 +32,9 @@ class PostController extends Controller
             'title' => 'string',
             'content' => 'string',
             'image' => 'string',
+            'category_id' => '',
         ]);
+
         Post::create($data);
 
         return redirect()->route('posts.index');
@@ -50,8 +48,9 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
+        $categories = Category::all();
 
-        return view('post.edit', compact('post'));
+        return view('post.edit', compact('post', 'categories'));
     }
 
     public function update(Post $post)
@@ -61,6 +60,7 @@ class PostController extends Controller
             'title' => 'string',
             'content' => 'string',
             'image' => 'string',
+            'category_id' => '',
         ]);
 
         $post->update($data);
