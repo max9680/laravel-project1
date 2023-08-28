@@ -6,7 +6,7 @@
         @endforeach
     </div>
     <div class="mt-4">
-        {{ $posts->links() }}
+        {{ $posts->withQueryString()->links() }}
     </div>
     <div class="pt-5 px-4">
         <a href="{{ route('posts.create') }}"
