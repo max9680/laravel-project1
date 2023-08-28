@@ -43,7 +43,12 @@ Route::group(['namespace' => 'App\Http\Controllers\Post'], function() {
     Route::delete('/posts/{post}', 'DestroyController')->name('posts.destroy');
 });
 
+Route::group(['namespace' => 'App\Http\Controllers\Admin'], function() {
 
+    Route::group(['namespace' => 'Post', 'prefix' => 'admin'], function() {
+        Route::get('/post', 'IndexController')->name('admin.post.index');
+    });
+});
 
 
 Route::get('/posts/update', [PostController::class, 'update']);
