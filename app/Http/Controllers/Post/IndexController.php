@@ -11,11 +11,11 @@ class IndexController extends Controller
 {
     public function __invoke()
     {
-        $posts = Post::all();
+        $posts = Post::paginate(10);
         $category = Category::find(1);
         $tag = Tag::find(2);
 
-//        dd($post->tags);
+//        dd($posts);
 
         return view('post.index', compact('posts'));
     }
