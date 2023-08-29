@@ -11,8 +11,13 @@ use App\Models\Tag;
 
 class IndexController extends Controller
 {
-    public function __invoke()
+    public function __invoke(FilterRequest $request)
     {
-        return view('admin.post.index');
+        $data = $request->validated();
+
+        $filter = app()->make(PostFilter::class, ['queryParams' => array_filter($data)]);
+        $posts = Post::filter($filter)->paginate(10);
+
+        return view('admin.post.index', compact('posts'));
     }
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ChirpController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
@@ -19,9 +20,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -61,3 +60,7 @@ Route::get('/contacts', [ContactController::class, 'index'])->name('contact.inde
 Route::get('/main', [MainController::class, 'index'])->name('main.index');
 
 require __DIR__.'/auth.php';
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
