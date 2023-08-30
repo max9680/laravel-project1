@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -42,9 +42,9 @@ Route::group(['namespace' => 'App\Http\Controllers\Post'], function() {
     Route::delete('/posts/{post}', 'DestroyController')->name('posts.destroy');
 });
 
-Route::group(['namespace' => 'App\Http\Controllers\Admin'], function() {
+Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'admin', 'middleware' => 'admin'], function() {
 
-    Route::group(['namespace' => 'Post', 'prefix' => 'admin'], function() {
+    Route::group(['namespace' => 'Post'], function() {
         Route::get('/post', 'IndexController')->name('admin.post.index');
     });
 });
